@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import banco_de_dados.conexao.Conexao;
-import banco_de_dados.entity.AnimaisMarinhos;
+import modelo.AnimaisMarinhos;
 
 public class AnimaisMarinhosDao {
     public void inserirAnimal(AnimaisMarinhos animal) {

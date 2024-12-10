@@ -1,6 +1,6 @@
 package view;
 
-import lib.Entrada;
+import javax.swing.JOptionPane;
 import modelo.AnimaisMarinhos;
 
 public class AnimaisMarinhosView{
@@ -9,32 +9,35 @@ public class AnimaisMarinhosView{
         return 0;
     }
 
-    public static void lerAnimaisMarinhos(AnimaisMarinhos animal) {
-        String palavra = null;
+    public void lerAnimaisMarinhos(AnimaisMarinhos animal) {
+        String nome = JOptionPane.showInputDialog(null, "Nome da espécie:", "Inserir dados", JOptionPane.QUESTION_MESSAGE);
+        animal.setNomeEspecie(nome);
 
-        System.out.println("Digite o nome da especie:");
-        Entrada.lerString_todaLinha();
-        palavra = Entrada.lerString_todaLinha().toUpperCase();
-        animal.setNomeEspecie(palavra);
+        int idade = Integer.parseInt(JOptionPane.showInputDialog(null, "Idade do animal:", "Inserir dados", JOptionPane.QUESTION_MESSAGE));
+        animal.setIdade(idade);
 
-        System.out.println("Digite a idade:");
-        animal.setIdade(Entrada.lerInt());
+        int qtdPatas = Integer.parseInt(JOptionPane.showInputDialog(null, "Quantidade de patas:", "Inserir dados", JOptionPane.QUESTION_MESSAGE));
+        animal.setQtdPatas(qtdPatas);
 
-        System.out.println("Digite a quantidade de patas:");
-        animal.setQtdPatas(Entrada.lerInt());
+        int peso = Integer.parseInt(JOptionPane.showInputDialog(null, "Peso do animal:", "Inserir dados", JOptionPane.QUESTION_MESSAGE));
+        animal.setPeso(peso);
 
-        System.out.println("Digite o peso:");
-        animal.setPeso(Entrada.lerInt());
+        int profundidadeMax = Integer.parseInt(JOptionPane.showInputDialog(null, "Profundidade máxima:", "Inserir dados", JOptionPane.QUESTION_MESSAGE));
+        animal.setProfundidadeMax(profundidadeMax);
 
-        System.out.println("Digite a profundidade máxima:");
-        animal.setProfundidadeMax(Entrada.lerInt());
-
-        System.out.println("Digite a velocidade máxima:");
-        animal.setVelocidadeMax(Entrada.lerInt());
+        int velocidadeMax = Integer.parseInt(JOptionPane.showInputDialog(null, "Velocidade máxima:", "Inserir dados", JOptionPane.QUESTION_MESSAGE));
+        animal.setVelocidadeMax(velocidadeMax);
     }
 
-    public void imprimirAnimalMarinho(){
-
+    public void imprimirAnimalMarinho(AnimaisMarinhos animal){
+        JOptionPane.showMessageDialog(null, 
+        "Nome do animal" + animal.getNomeEspecie()
+         + "\nIdade: " + animal.getIdade() + " anos"
+         + "\nQuantidade de patas: " + animal.getQtdPatas() 
+         + "\nPeso: " + animal.getPeso() 
+         + "\nProfundidade máxima: " + animal.getProfundidadeMax() 
+         + "\nVelocidade máxima: " + animal.getVelocidadeMax(),
+          "Janela inicial", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void imprimirListaAnimal(){

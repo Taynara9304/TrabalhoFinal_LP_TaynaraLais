@@ -22,7 +22,7 @@ public class AnimalMarinhos{
                     break;
                 case 2:
                     // imprimir animal marinho
-                    //AnimaisMarinhosView.imprimirListaAnimal();
+                    // AnimaisMarinhosView.imprimirListaAnimal();
                     break;
                 case 3:
                     // ordenar por nome
