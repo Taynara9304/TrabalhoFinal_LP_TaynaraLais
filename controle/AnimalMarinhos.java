@@ -22,27 +22,27 @@ public class AnimalMarinhos{
                     break;
                 case 2:
                     // imprimir animal marinho
-                    AnimaisMarinhosView.imprimirListaAnimal();
+                    //AnimaisMarinhosView.imprimirListaAnimal();
                     break;
                 case 3:
                     // ordenar por nome
-                    AnimaisMarinhosView.ordenarAnimalPorNome();
+                    //AnimaisMarinhosView.ordenarAnimalPorNome();
                     break;
                 case 4:
                     // buscar por nome
-                    AnimaisMarinhosView.buscarAnimalPorNome();
+                    //AnimaisMarinhosView.buscarAnimalPorNome();
                     break;
                 case 5:
                     // contar quantidade de animais
-                    AnimaisMarinhosView.ContarQtdAnimalMarinho();
+                    //AnimaisMarinhosView.ContarQtdAnimalMarinho();
                     break;
                 case 6:
                     // remover animal marinho
-                    AnimaisMarinhosView.ordenarAnimalPorNome();
+                    //AnimaisMarinhosView.ordenarAnimalPorNome();
                     break;
                 case 7:
                     // editar animal marinho
-                    AnimaisMarinhosView.editarAnimalMarinho();
+                    //AnimaisMarinhosView.editarAnimalMarinho();
                     break;
                 
              }

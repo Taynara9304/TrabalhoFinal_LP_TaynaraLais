@@ -9,7 +9,7 @@ public class AnimaisMarinhosView{
         return 0;
     }
 
-    public static void lerAnimalMarinho(AnimaisMarinhos animal) {
+    public static void lerAnimaisMarinhos(AnimaisMarinhos animal) {
         String palavra = null;
 
         System.out.println("Digite o nome da especie:");

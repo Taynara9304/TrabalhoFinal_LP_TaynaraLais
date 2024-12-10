@@ -8,6 +8,7 @@ public class Main {
         AnimaisMarinhosDao animaisDao = new AnimaisMarinhosDao();
         AnimaisMarinhos animal = new AnimaisMarinhos();
         AnimaisMarinhosView.lerAnimalMarinho(animal);
+        animaisDao.inserirAnimal(animal);
         
     }
 }
