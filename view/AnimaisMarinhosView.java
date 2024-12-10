@@ -5,7 +5,7 @@ import modelo.AnimaisMarinhos;
 
 public class AnimaisMarinhosView{
 
-    public int imprimirMenu(){
+    public static int imprimirMenu(){
         return 0;
     }
 
