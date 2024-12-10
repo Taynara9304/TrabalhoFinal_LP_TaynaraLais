@@ -1,12 +1,14 @@
-create database sistema_lp;
-use sistema_lp;
+create database sistema_lp_animaisMarinhos;
+use sistema_lp_animaisMarinhos;
 
-create table aviao(
+create table animal(
 	id int auto_increment primary key,
-    modelo varchar(50),
-    fabricante varchar(50),
-    qtdAssentos int,
-    anoFabricacao int
+    nomeEspecie varchar(50),
+    idade int,
+    qtdPatas int,
+    peso int,
+    profundidadeMax int,
+    velocidadeMax int
 );
 
-select * from aviao;
+select * from animal;

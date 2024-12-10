@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,17 +12,19 @@ import banco_de_dados.conexao.Conexao;
 import banco_de_dados.entity.AnimaisMarinhos;
 
 public class AnimaisMarinhosDao {
-    public void inserirAviao(AnimaisMarinhos aviao) {
-        String sql= "INSERT INTO aviao(modelo, fabricante, qtdAssentos, anoFabricacao) VALUES (?, ?, ?, ?)";
+    public void inserirAviao(AnimaisMarinhos animal) {
+        String sql= "INSERT INTO animal(nomeEspecie, idade, qtdPatas, peso, profundidadeMax, velocidadeMax) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
-
-            stmt.setString(1, aviao.getModelo());
-            stmt.setString(2, aviao.getFabricante());
-            stmt.setInt(3, aviao.getQtdAssentos());
-            stmt.setInt(4, aviao.getAnoFabricacao());
             
+            stmt.setString(1, animal.getNomeEspecie());
+            stmt.setInt(2, animal.getIdade());
+            stmt.setInt(3, animal.getQtdPatas());
+            stmt.setInt(4, animal.getPeso());
+            stmt.setInt(5, animal.getProfundidadeMax());
+            stmt.setInt(6, animal.getVelocidadeMax());
+
             stmt.executeUpdate();
             System.out.println("Avião inserido com sucesso");
         } catch (SQLException e) {
@@ -31,39 +34,43 @@ public class AnimaisMarinhosDao {
     }
 
     public List<AnimaisMarinhos> listarAvioes() {
-        List<Aviao> avioes = new ArrayList<>();
-        String sql = "SELECT * FROM aviao";
+        List<AnimaisMarinhos> animaisMarinhos = new ArrayList<>();
+        String sql = "SELECT * FROM animal";
 
         try (Connection connection = new Conexao().conectar()) {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                Aviao aviao = new Aviao();
+                AnimaisMarinhos animal = new AnimaisMarinhos();
 
-                String modelo = rs.getString("modelo");
-                String fabricante = rs.getString("fabricante");
-                int qtdAssento = rs.getInt("qtdAssentos");
-                int anoFabricacao = rs.getInt("anoFabricacao");
+                String nomeEspecie = rs.getString("nomeEspecie");
+                int idade = rs.getInt("idade");
+                int qtdPatas = rs.getInt("qtdPatas");
+                int peso = rs.getInt("peso");
+                int profundidadeMax = rs.getInt("profundidadeMax");
+                int velocidadeMax = rs.getInt("velocidadeMax");
 
-                aviao.setModelo(modelo);
-                aviao.setFabricante(fabricante);
-                aviao.setQtdAssentos(qtdAssento);
-                aviao.setAnoFabricacao(anoFabricacao);
+                animal.setNomeEspecie(nomeEspecie);
+                animal.setIdade(idade);
+                animal.setQtdPatas(qtdPatas);
+                animal.setPeso(peso);
+                animal.setProfundidadeMax(profundidadeMax);
+                animal.setVelocidadeMax(velocidadeMax);
 
-                avioes.add(aviao);
+                animaisMarinhos.add(animal);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return avioes;
+        return animaisMarinhos;
     }
 
     public AnimaisMarinhos buscarAviao(int idUser) {
-        AnimaisMarinhos aviao = new Aviao();
+        AnimaisMarinhos animal = new AnimaisMarinhos();
 
-        String sql = "SELECT * FROM aviao WHERE aviao.id = ?";
+        String sql = "SELECT * FROM animal WHERE animal.id = ?";
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -73,24 +80,28 @@ public class AnimaisMarinhosDao {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                String modelo = rs.getString("modelo");
-                String fabricante = rs.getString("fabricante");
-                int qtdAssento = rs.getInt("qtdAssentos");
-                int anoFabricacao = rs.getInt("anoFabricacao");
+                String nomeEspecie = rs.getString("nomeEspecie");
+                int idade = rs.getInt("idade");
+                int qtdPatas = rs.getInt("qtdPatas");
+                int peso = rs.getInt("peso");
+                int profundidadeMax = rs.getInt("profundidadeMax");
+                int velocidadeMax = rs.getInt("velocidadeMax");
     
-                aviao.setModelo(modelo);
-                aviao.setFabricante(fabricante);
-                aviao.setQtdAssentos(qtdAssento);
-                aviao.setAnoFabricacao(anoFabricacao);
+                animal.setNomeEspecie(nomeEspecie);
+                animal.setIdade(idade);
+                animal.setQtdPatas(qtdPatas);
+                animal.setPeso(peso);
+                animal.setProfundidadeMax(profundidadeMax);
+                animal.setVelocidadeMax(velocidadeMax);
             } else {
-                System.out.println("Não há um avião com esse id");
+                System.out.println("Não há um animal com esse id");
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar aviao");
+            System.out.println("Erro ao buscar animal");
             e.printStackTrace();
         }
 
-        return aviao;
+        return animal;
     }
 
     public void editarModeloAviao(int idUser, String modelo) {
