@@ -1,5 +1,7 @@
 package view;
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 import modelo.AnimaisMarinhos;
 
@@ -40,8 +42,10 @@ public class AnimaisMarinhosView{
           "Janela inicial", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public void imprimirListaAnimal(){
-
+    public void imprimirListaAnimal(ArrayList<AnimaisMarinhos> listaAnimais){
+        for (AnimaisMarinhos animaisMarinhos : listaAnimais) {
+            imprimirAnimalMarinho(animaisMarinhos);
+        }
     }
 
     public void buscarAnimalPorNome(){
