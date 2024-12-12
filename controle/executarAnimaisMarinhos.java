@@ -5,27 +5,27 @@ import java.util.ArrayList;
 import modelo.*;
 import view.*;
 
-public class AnimalMarinhos{
+public class executarAnimaisMarinhos{
 
     public static void controle(){
         int n = 0;
         ArrayList<AnimaisMarinhos> listaAnimais = new ArrayList<>();
 
         while(true){
-            n = AnimaisMarinhosView.imprimirMenu();
+            AnimaisMarinhosView.imprimirMenu();
 
              switch (n){
 
                 case 1:
                     // ler animal marinho
-                    AnimaisMarinhosView.lerAnimaisMarinhos();
+                    //AnimaisMarinhosView.lerAnimaisMarinhos();
                     break;
                 case 2:
                     // imprimir animal marinho
-                    // AnimaisMarinhosView.imprimirListaAnimal();
+                    //AnimaisMarinhosView.imprimirListaAnimal();
                     break;
                 case 3:
-                    // ordenar por nome
+                    // ordenar e imprimir por nome
                     //AnimaisMarinhosView.ordenarAnimalPorNome();
                     break;
                 case 4:
@@ -47,5 +47,13 @@ public class AnimalMarinhos{
                 
              }
         }
+    }
+
+    public static void imprimirListaAnimal(AnimaisMarinhos animal) {
+        System.out.println("Nome da espécie: " + animal.getNomeEspecie());
+        System.out.println("Idade: " + animal.getIdade());
+        System.out.println("Quantidade de patas: " + animal.getPeso());
+        System.out.println("Profundidade máxima: " + animal.getProfundidadeMax());
+        System.out.println("Velocidade máxima: " + animal.getVelocidadeMax());
     }
 }

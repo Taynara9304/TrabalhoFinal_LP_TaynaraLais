@@ -4,11 +4,20 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 import modelo.AnimaisMarinhos;
-
+import banco_de_dados.dao.*;
 public class AnimaisMarinhosView{
 
-    public static int imprimirMenu(){
-        return 0;
+    public static void imprimirMenu(){
+        JOptionPane.showMessageDialog(null, "Menu", "Escolha uma opção:"
+        + "\n1 - Inserir animal marinho"
+        + "\n2 - Imprimir animal marinho"
+        + "\n3 - Ordenar e imprimir por nome"
+        + "\n4 - Buscar por nome do animal marinho"
+        + "\n5 - Contar quantidade de animais cadastrados"
+        + "\n6 - Remover animal marinho"
+        + "\n7 - Editar animal marinho"
+        , JOptionPane.QUESTION_MESSAGE);
+
     }
 
     public void lerAnimaisMarinhos(AnimaisMarinhos animal) {
@@ -33,7 +42,7 @@ public class AnimaisMarinhosView{
 
     public void imprimirAnimalMarinho(AnimaisMarinhos animal){
         JOptionPane.showMessageDialog(null, 
-        "Nome do animal" + animal.getNomeEspecie()
+        "Nome do animal: " + animal.getNomeEspecie()
          + "\nIdade: " + animal.getIdade() + " anos"
          + "\nQuantidade de patas: " + animal.getQtdPatas() 
          + "\nPeso: " + animal.getPeso() 
@@ -48,8 +57,9 @@ public class AnimaisMarinhosView{
         }
     }
 
-    public void buscarAnimalPorNome(){
-
+    public void buscarAnimalPorNome(String nome){
+        AnimaisMarinhosDao animal = new AnimaisMarinhosDao();
+        animal.buscarAnimal(nome);
     }
 
     public void removerAnimalMarinho(){

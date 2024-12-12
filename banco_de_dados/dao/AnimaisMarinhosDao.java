@@ -67,15 +67,15 @@ public class AnimaisMarinhosDao {
         return animaisMarinhos;
     }
 
-    public AnimaisMarinhos buscarAnimal(int idUser) {
+    public AnimaisMarinhos buscarAnimal(String nome) {
         AnimaisMarinhos animal = new AnimaisMarinhos();
 
-        String sql = "SELECT * FROM animal WHERE animal.id = ?";
+        String sql = "SELECT * FROM animal WHERE animal.nomeEspecie = ?";
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
             
-            stmt.setInt(1, idUser);
+            stmt.setString(1, nome);
 
             ResultSet rs = stmt.executeQuery();
 
@@ -94,7 +94,7 @@ public class AnimaisMarinhosDao {
                 animal.setProfundidadeMax(profundidadeMax);
                 animal.setVelocidadeMax(velocidadeMax);
             } else {
-                System.out.println("Não há um animal com esse id");
+                System.out.println("Não há um animal com esse nome");
             }
         } catch (SQLException e) {
             System.out.println("Erro ao buscar animal");
@@ -104,13 +104,13 @@ public class AnimaisMarinhosDao {
         return animal;
     }
 
-    public void editarNomeEspecie(int idUser, String modelo) {
+    public void editarNomeEspecie(int idUser, String nomeEspecie) {
         String sql = "UPDATE animal SET nomeEspecie = ? WHERE id = ?";
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
             
-            stmt.setString(1, modelo);
+            stmt.setString(1, nomeEspecie);
             stmt.setInt(2, idUser);
 
             int mudanca = stmt.executeUpdate();
@@ -124,13 +124,13 @@ public class AnimaisMarinhosDao {
         }
     }
 
-    public void editarIdade(int idUser, String fabricante) {
+    public void editarIdade(int idUser, int idade) {
         String sql = "UPDATE animal SET idade = ? WHERE id = ?";
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
             
-            stmt.setString(1, fabricante);
+            stmt.setInt(1, idade);
             stmt.setInt(2, idUser);
 
             stmt.executeUpdate();
@@ -140,13 +140,13 @@ public class AnimaisMarinhosDao {
         }
     }
 
-    public void editarQtdPatas(int idUser, int qtdAssento) {
+    public void editarQtdPatas(int idUser, int qtdPatas) {
         String sql = "UPDATE animal SET qtdPatas = ? WHERE id = ?";
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
             
-            stmt.setInt(1, qtdAssento);
+            stmt.setInt(1, qtdPatas);
             stmt.setInt(2, idUser);
 
             stmt.executeUpdate();
@@ -156,13 +156,13 @@ public class AnimaisMarinhosDao {
         }
     }
 
-    public void editarPeso(int idUser, int anoFabricacao) {
+    public void editarPeso(int idUser, int peso) {
         String sql = "UPDATE animal SET peso = ? WHERE id = ?";
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
             
-            stmt.setInt(1, anoFabricacao);
+            stmt.setInt(1, peso);
             stmt.setInt(2, idUser);
 
             stmt.executeUpdate();
@@ -172,13 +172,13 @@ public class AnimaisMarinhosDao {
         }
     }
 
-    public void editarProfundidadeMax(int idUser, int anoFabricacao) {
+    public void editarProfundidadeMax(int idUser, int profundidadeMax) {
         String sql = "UPDATE animal SET profundidadeMax = ? WHERE id = ?";
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
             
-            stmt.setInt(1, anoFabricacao);
+            stmt.setInt(1, profundidadeMax);
             stmt.setInt(2, idUser);
 
             stmt.executeUpdate();
@@ -188,13 +188,13 @@ public class AnimaisMarinhosDao {
         }
     }
 
-    public void editarVelocidadeMax(int idUser, int anoFabricacao) {
+    public void editarVelocidadeMax(int idUser, int velocidadeMax) {
         String sql = "UPDATE animal SET velocidadeMax = ? WHERE id = ?";
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
             
-            stmt.setInt(1, anoFabricacao);
+            stmt.setInt(1, velocidadeMax);
             stmt.setInt(2, idUser);
 
             stmt.executeUpdate();
