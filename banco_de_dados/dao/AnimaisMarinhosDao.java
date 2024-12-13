@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import banco_de_dados.conexao.Conexao;
 import modelo.AnimaisMarinhos;
 
@@ -27,6 +29,7 @@ public class AnimaisMarinhosDao {
 
             stmt.executeUpdate();
             System.out.println("Animal inserido com sucesso");
+            JOptionPane.showMessageDialog(null, "Sucesso ao inserir animal!", "Mensagem", JOptionPane.OK_OPTION);
         } catch (SQLException e) {
             System.out.println("Erro ao inserir animal");
             e.printStackTrace();
@@ -67,7 +70,7 @@ public class AnimaisMarinhosDao {
         return animaisMarinhos;
     }
 
-    public AnimaisMarinhos buscarAnimal(String nome) {
+    public AnimaisMarinhos buscarAnimalPorNome(String nome) {
         AnimaisMarinhos animal = new AnimaisMarinhos();
 
         String sql = "SELECT * FROM animal WHERE animal.nomeEspecie = ?";
@@ -85,7 +88,7 @@ public class AnimaisMarinhosDao {
                 int qtdPatas = rs.getInt("qtdPatas");
                 int peso = rs.getInt("peso");
                 int profundidadeMax = rs.getInt("profundidadeMax");
-                int velocidadeMax = rs.getInt("velocidadeMax");
+                int velocidadeMax = rs.getInt("profundidadeMax");
     
                 animal.setNomeEspecie(nomeEspecie);
                 animal.setIdade(idade);
@@ -95,6 +98,7 @@ public class AnimaisMarinhosDao {
                 animal.setVelocidadeMax(velocidadeMax);
             } else {
                 System.out.println("Não há um animal com esse nome");
+
             }
         } catch (SQLException e) {
             System.out.println("Erro ao buscar animal");
@@ -104,126 +108,150 @@ public class AnimaisMarinhosDao {
         return animal;
     }
 
-    public void editarNomeEspecie(int idUser, String nomeEspecie) {
-        String sql = "UPDATE animal SET nomeEspecie = ? WHERE id = ?";
+    public void editarNomeEspecie(String nome, String nomeEspecie) {
+        String sql = "UPDATE animal SET nomeEspecie = ? WHERE animal.nomeEspecie = ?";
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
             
             stmt.setString(1, nomeEspecie);
-            stmt.setInt(2, idUser);
+            stmt.setString(2, nome);
 
             int mudanca = stmt.executeUpdate();
 
             if (mudanca > 0) {
-                System.out.println("Tudo certo ao atualizar dado do aviao");
+                System.out.println("Tudo certo ao atualizar dado do animal");
+                JOptionPane.showMessageDialog(null, "Confirmação", "Sucesso ao atualizar atributo", JOptionPane.YES_OPTION);
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao atualizar aviao");
+            System.out.println("Erro ao atualizar animal");
+            JOptionPane.showMessageDialog(null, "Confirmação", "Erro ao atualizar nome", JOptionPane.YES_OPTION);
+
             e.printStackTrace();
         }
     }
 
-    public void editarIdade(int idUser, int idade) {
-        String sql = "UPDATE animal SET idade = ? WHERE id = ?";
+    public void editarIdade(String nome, int idade) {
+        String sql = "UPDATE animal SET idade = ? WHERE animal.nomeEspecie = ?";
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
             
             stmt.setInt(1, idade);
-            stmt.setInt(2, idUser);
+            stmt.setString(2, nome);
 
             stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Confirmação", "Sucesso ao atualizar atributo", JOptionPane.YES_OPTION);
+
         } catch (SQLException e) {
-            System.out.println("Erro ao atualizar aviao");
+            System.out.println("Erro ao atualizar animal");
+            JOptionPane.showMessageDialog(null, "Confirmação", "Erro ao atualizar atributo", JOptionPane.YES_OPTION);
+
             e.printStackTrace();
         }
     }
 
-    public void editarQtdPatas(int idUser, int qtdPatas) {
-        String sql = "UPDATE animal SET qtdPatas = ? WHERE id = ?";
+    public void editarQtdPatas(String nome, int qtdPatas) {
+        String sql = "UPDATE animal SET qtdPatas = ? WHERE animal.nomeEspecie = ?";
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
             
             stmt.setInt(1, qtdPatas);
-            stmt.setInt(2, idUser);
+            stmt.setString(2, nome);
 
             stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Confirmação", "Sucesso ao atualizar atributo", JOptionPane.YES_OPTION);
         } catch (SQLException e) {
-            System.out.println("Erro ao atualizar aviao");
+            System.out.println("Erro ao atualizar animal");
+            JOptionPane.showMessageDialog(null, "Confirmação", "Erro ao atualizar atributo", JOptionPane.YES_OPTION);
             e.printStackTrace();
         }
     }
 
-    public void editarPeso(int idUser, int peso) {
-        String sql = "UPDATE animal SET peso = ? WHERE id = ?";
+    public void editarPeso(String nome, int peso) {
+        String sql = "UPDATE animal SET peso = ? WHERE animal.nomeEspecie = ?";
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
             
             stmt.setInt(1, peso);
-            stmt.setInt(2, idUser);
+            stmt.setString(2, nome);
 
             stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Confirmação", "Sucesso ao atualizar atributo", JOptionPane.YES_OPTION);
         } catch (SQLException e) {
             System.out.println("Erro ao atualizar animal");
+            JOptionPane.showMessageDialog(null, "Erro", "Sucesso ao atualizar atributo", JOptionPane.YES_OPTION);
             e.printStackTrace();
         }
     }
 
-    public void editarProfundidadeMax(int idUser, int profundidadeMax) {
-        String sql = "UPDATE animal SET profundidadeMax = ? WHERE id = ?";
+    public void editarProfundidadeMax(String nome, int profundidadeMax) {
+        String sql = "UPDATE animal SET profundidadeMax = ? WHERE animal.nomeEspecie = ?";
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
             
             stmt.setInt(1, profundidadeMax);
-            stmt.setInt(2, idUser);
+            stmt.setString(2, nome);
 
             stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Confirmação", "Sucesso ao atualizar atributo", JOptionPane.YES_OPTION);
         } catch (SQLException e) {
             System.out.println("Erro ao atualizar animal");
+            JOptionPane.showMessageDialog(null, "Confirmação", "Erro ao atualizar atributo", JOptionPane.YES_OPTION);
+
             e.printStackTrace();
         }
     }
 
-    public void editarVelocidadeMax(int idUser, int velocidadeMax) {
-        String sql = "UPDATE animal SET velocidadeMax = ? WHERE id = ?";
+    public void editarVelocidadeMax(String nome, int velocidadeMax) {
+        String sql = "UPDATE animal SET velocidadeMax = ? animal.nomeEspecie = ?";
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
             
             stmt.setInt(1, velocidadeMax);
-            stmt.setInt(2, idUser);
+            stmt.setString(2, nome);
 
             stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Confirmação", "Sucesso ao atualizar atributo", JOptionPane.YES_OPTION);
         } catch (SQLException e) {
             System.out.println("Erro ao atualizar animal");
+            JOptionPane.showMessageDialog(null, "Confirmação", "Erro ao atualizar atributo", JOptionPane.YES_OPTION);
+
             e.printStackTrace();
         }
     }
 
-    public void deletarAnimal(int idUser) {
-        String sql = "DELETE FROM animal WHERE id = ?";
+    public void deletarAnimal(String nome) {
+        String sql = "DELETE FROM animal WHERE animal.nomeEspecie = ?";
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
             
-            stmt.setInt(1, idUser);
+            stmt.setString(1, nome);
 
             int mudanca = stmt.executeUpdate();
 
             if (mudanca > 0) {
                 System.out.println("Tudo certo ao deletar animal");
+                JOptionPane.showMessageDialog(null, "Confirmação", "Sucesso ao remover animal", JOptionPane.YES_OPTION);
             }
         } catch (SQLException e) {
             System.out.println("Erro ao deletar animal");
+            JOptionPane.showMessageDialog(null, "Confirmação", "Erro ao remover animal", JOptionPane.YES_OPTION);
             e.printStackTrace();
         }
     }
 
-    public void contarAnimais() {
+    public void contarAvioes() {
         String sql = "SELECT count(*) FROM animal";
 
         try (Connection connection = new Conexao().conectar()) {

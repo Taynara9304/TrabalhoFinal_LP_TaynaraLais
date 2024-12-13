@@ -1,4 +1,4 @@
-package controle;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +42,7 @@ public class executarAnimaisMarinhos{
                 case 4:
                     // buscar por nome
                     String nomeBuscar = AnimaisMarinhosView.lerNomeAnimal();
-                    animaisDao.buscarAnimalPorNome(nomeBuscar);
+                    // animaisDao.buscarAnimalPorNome(nomeBuscar);
                     break;
                 case 5:
                     // contar quantidade de animais
@@ -51,7 +51,7 @@ public class executarAnimaisMarinhos{
                 case 6:
                     // remover animal marinho
                     String nomeDeletar = AnimaisMarinhosView.lerNomeAnimal();
-                    animaisDao.deletarAnimal(nomeDeletar);
+                    // animaisDao.deletarAnimal(nomeDeletar);
                     break;
                 case 7:
                     // editar animal marinho

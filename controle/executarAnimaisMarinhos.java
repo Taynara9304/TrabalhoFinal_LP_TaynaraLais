@@ -1,45 +1,57 @@
 package controle;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import banco_de_dados.dao.AnimaisMarinhosDao;
 import modelo.*;
 import view.*;
 
 public class executarAnimaisMarinhos{
 
     public static void controle(){
-        int n = 0;
-        ArrayList<AnimaisMarinhos> listaAnimais = new ArrayList<>();
-        AnimaisMarinhos animal = new AnimaisMarinhos();
+        int escolha = 0;
+        
+        List<AnimaisMarinhos> listaAnimais = new ArrayList<>();
+        AnimaisMarinhosDao animaisDao = new AnimaisMarinhosDao();
 
         while(true){
-            AnimaisMarinhosView.imprimirMenu();
+            escolha = AnimaisMarinhosView.imprimirMenu();
 
-             switch (n){
+             switch (escolha){
 
                 case 1:
-                    // ler animal marinho
-                    AnimaisMarinhosView.lerAnimaisMarinhos(animal);
+                    // ***ler animal marinho***
+                    AnimaisMarinhos animal = new AnimaisMarinhos();
+                    //pegando os dados do JOptionPane
+                    animal = AnimaisMarinhosView.lerAnimaisMarinhos(animal);
+                    //inserindo no banco de dados
+                    animaisDao.inserirAnimal(animal);
                     break;
                 case 2:
-                    // imprimir animal marinho
+                    // ***imprimir animal marinho***
+                    //pegando os dados do banco de dados
+                    listaAnimais = animaisDao.listarAnimais();
+                    //imprimindo com o JOptionPane
                     AnimaisMarinhosView.imprimirListaAnimal(listaAnimais);
                     break;
                 case 3:
-                    // ordenar e imprimir por nome
-                    AnimaisMarinhosView.ordenarAnimalPorNome();
+                    // imprimir em ordem alfabética
+                    //AnimaisMarinhosView.ordenarAnimalPorNome();
                     break;
                 case 4:
                     // buscar por nome
-                    //AnimaisMarinhosView.buscarAnimalPorNome();
+                    String nomeBuscar = AnimaisMarinhosView.lerNomeAnimal();
+                    // animaisDao.buscarAnimalPorNome(nomeBuscar);
                     break;
                 case 5:
                     // contar quantidade de animais
-                    AnimaisMarinhosView.ContarQtdAnimalMarinho();
+                    //AnimaisMarinhosView.ContarQtdAnimalMarinho();
                     break;
                 case 6:
                     // remover animal marinho
-                    AnimaisMarinhosView.removerAnimalMarinho();
+                    String nomeDeletar = AnimaisMarinhosView.lerNomeAnimal();
+                    // animaisDao.deletarAnimal(nomeDeletar);
                     break;
                 case 7:
                     // editar animal marinho
@@ -48,13 +60,5 @@ public class executarAnimaisMarinhos{
                 
              }
         }
-    }
-
-    public static void imprimirListaAnimal(AnimaisMarinhos animal) {
-        System.out.println("Nome da espécie: " + animal.getNomeEspecie());
-        System.out.println("Idade: " + animal.getIdade());
-        System.out.println("Quantidade de patas: " + animal.getPeso());
-        System.out.println("Profundidade máxima: " + animal.getProfundidadeMax());
-        System.out.println("Velocidade máxima: " + animal.getVelocidadeMax());
     }
 }

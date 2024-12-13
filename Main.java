@@ -1,7 +1,6 @@
-import banco_de_dados.dao.*;
 import modelo.AnimaisMarinhos;
 import view.AnimaisMarinhosView;
-import controle.*;
+
 public class Main {
     public static void main(String[] args) {
         AnimaisMarinhosDao animaisDao = new AnimaisMarinhosDao();
