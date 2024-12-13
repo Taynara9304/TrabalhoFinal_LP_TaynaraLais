@@ -17,7 +17,6 @@ public class AnimaisMarinhosView{
         + "\n6 - Remover animal marinho"
         + "\n7 - Editar animal marinho"
         , JOptionPane.QUESTION_MESSAGE);
-
     }
 
     public static void lerAnimaisMarinhos(AnimaisMarinhos animal) {

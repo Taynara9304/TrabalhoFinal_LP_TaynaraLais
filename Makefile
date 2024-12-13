@@ -6,7 +6,6 @@ cadastro:
 
 build:
 	@javac -d bin Main.java
-	@javac -d bin aulas/*.java
 
 run: build
 	@java -cp bin Main
