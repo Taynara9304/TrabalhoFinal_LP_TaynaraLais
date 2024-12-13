@@ -1,11 +1,10 @@
 package controle;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import banco_de_dados.dao.AnimaisMarinhosDao;
-import modelo.*;
-import view.*;
+import modelo.AnimaisMarinhos;
+import view.AnimaisMarinhosView;
 
 public class executarAnimaisMarinhos{
 
@@ -21,7 +20,7 @@ public class executarAnimaisMarinhos{
              switch (escolha){
 
                 case 1:
-                    // ***ler animal marinho***
+                    // ler animal marinho
                     AnimaisMarinhos animal = new AnimaisMarinhos();
                     //pegando os dados do JOptionPane
                     animal = AnimaisMarinhosView.lerAnimaisMarinhos(animal);
@@ -29,7 +28,7 @@ public class executarAnimaisMarinhos{
                     animaisDao.inserirAnimal(animal);
                     break;
                 case 2:
-                    // ***imprimir animal marinho***
+                    // imprimir animal marinho
                     //pegando os dados do banco de dados
                     listaAnimais = animaisDao.listarAnimais();
                     //imprimindo com o JOptionPane
@@ -37,21 +36,21 @@ public class executarAnimaisMarinhos{
                     break;
                 case 3:
                     // imprimir em ordem alfabética
-                    //AnimaisMarinhosView.ordenarAnimalPorNome();
+                    AnimaisMarinhosView.ordenarAnimalPorNome();
                     break;
                 case 4:
                     // buscar por nome
                     String nomeBuscar = AnimaisMarinhosView.lerNomeAnimal();
-                    // animaisDao.buscarAnimalPorNome(nomeBuscar);
+                     animaisDao.buscarAnimalPorNome(nomeBuscar);
                     break;
                 case 5:
                     // contar quantidade de animais
-                    //AnimaisMarinhosView.ContarQtdAnimalMarinho();
+                    AnimaisMarinhosView.ContarQtdAnimalMarinho();
                     break;
                 case 6:
                     // remover animal marinho
                     String nomeDeletar = AnimaisMarinhosView.lerNomeAnimal();
-                    // animaisDao.deletarAnimal(nomeDeletar);
+                     animaisDao.deletarAnimal(nomeDeletar);
                     break;
                 case 7:
                     // editar animal marinho

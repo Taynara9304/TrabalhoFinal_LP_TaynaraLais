@@ -12,14 +12,15 @@ import javax.swing.JOptionPane;
 
 import banco_de_dados.conexao.Conexao;
 import modelo.AnimaisMarinhos;
+import view.AnimaisMarinhosView;
 
 public class AnimaisMarinhosDao {
     public void inserirAnimal(AnimaisMarinhos animal) {
-        String sql= "INSERT INTO animal(nomeEspecie, idade, qtdPatas, peso, profundidadeMax, velocidadeMax) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO animal(nomeEspecie, idade, qtdPatas, peso, profundidadeMax, velocidadeMax) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            
+
             stmt.setString(1, animal.getNomeEspecie());
             stmt.setInt(2, animal.getIdade());
             stmt.setInt(3, animal.getQtdPatas());
@@ -77,7 +78,7 @@ public class AnimaisMarinhosDao {
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            
+
             stmt.setString(1, nome);
 
             ResultSet rs = stmt.executeQuery();
@@ -89,7 +90,7 @@ public class AnimaisMarinhosDao {
                 int peso = rs.getInt("peso");
                 int profundidadeMax = rs.getInt("profundidadeMax");
                 int velocidadeMax = rs.getInt("profundidadeMax");
-    
+
                 animal.setNomeEspecie(nomeEspecie);
                 animal.setIdade(idade);
                 animal.setQtdPatas(qtdPatas);
@@ -104,6 +105,7 @@ public class AnimaisMarinhosDao {
             System.out.println("Erro ao buscar animal");
             e.printStackTrace();
         }
+        AnimaisMarinhosView.imprimirAnimalMarinho(animal);
 
         return animal;
     }
@@ -113,7 +115,7 @@ public class AnimaisMarinhosDao {
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            
+
             stmt.setString(1, nomeEspecie);
             stmt.setString(2, nome);
 
@@ -121,7 +123,8 @@ public class AnimaisMarinhosDao {
 
             if (mudanca > 0) {
                 System.out.println("Tudo certo ao atualizar dado do animal");
-                JOptionPane.showMessageDialog(null, "Confirmação", "Sucesso ao atualizar atributo", JOptionPane.YES_OPTION);
+                JOptionPane.showMessageDialog(null, "Confirmação", "Sucesso ao atualizar atributo",
+                        JOptionPane.YES_OPTION);
             }
         } catch (SQLException e) {
             System.out.println("Erro ao atualizar animal");
@@ -136,7 +139,7 @@ public class AnimaisMarinhosDao {
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            
+
             stmt.setInt(1, idade);
             stmt.setString(2, nome);
 
@@ -157,7 +160,7 @@ public class AnimaisMarinhosDao {
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            
+
             stmt.setInt(1, qtdPatas);
             stmt.setString(2, nome);
 
@@ -176,7 +179,7 @@ public class AnimaisMarinhosDao {
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            
+
             stmt.setInt(1, peso);
             stmt.setString(2, nome);
 
@@ -195,7 +198,7 @@ public class AnimaisMarinhosDao {
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            
+
             stmt.setInt(1, profundidadeMax);
             stmt.setString(2, nome);
 
@@ -215,7 +218,7 @@ public class AnimaisMarinhosDao {
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            
+
             stmt.setInt(1, velocidadeMax);
             stmt.setString(2, nome);
 
@@ -235,7 +238,7 @@ public class AnimaisMarinhosDao {
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            
+
             stmt.setString(1, nome);
 
             int mudanca = stmt.executeUpdate();
@@ -251,20 +254,24 @@ public class AnimaisMarinhosDao {
         }
     }
 
-    public void contarAvioes() {
+    public int contarAnimais() {
         String sql = "SELECT count(*) FROM animal";
+        int qtd = 0;
 
-        try (Connection connection = new Conexao().conectar()) {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery(sql);
+        try (Connection connection = new Conexao().conectar();
+                PreparedStatement stmt = connection.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
 
-            int qtd = rs.getInt("id");
+            if (rs.next()) {
+                qtd = rs.getInt(1);
+            }
 
             System.out.println(qtd);
         } catch (SQLException e) {
             System.out.println("Erro ao contar animal");
             e.printStackTrace();
         }
+        return qtd;
     }
 
     public AnimaisMarinhos buscarAnimalMaisNovo() {
@@ -282,7 +289,7 @@ public class AnimaisMarinhosDao {
                 int peso = rs.getInt("peso");
                 int profundidadeMax = rs.getInt("profundidadeMax");
                 int velocidadeMax = rs.getInt("velocidadeMax");
-    
+
                 animal.setNomeEspecie(nomeEspecie);
                 animal.setIdade(idade);
                 animal.setQtdPatas(qtdPatas);
@@ -306,7 +313,7 @@ public class AnimaisMarinhosDao {
 
         try (Connection connection = new Conexao().conectar()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            
+
             stmt.setInt(1, idadeMax);
             stmt.setInt(2, idadeMin);
 
@@ -319,7 +326,7 @@ public class AnimaisMarinhosDao {
                 int peso = rs.getInt("peso");
                 int profundidadeMax = rs.getInt("profundidadeMax");
                 int velocidadeMax = rs.getInt("velocidadeMax");
-    
+
                 animal.setNomeEspecie(nomeEspecie);
                 animal.setIdade(idade);
                 animal.setQtdPatas(qtdPatas);
@@ -329,7 +336,7 @@ public class AnimaisMarinhosDao {
 
                 System.out.println(animal);
             }
-            
+
         } catch (SQLException e) {
             System.out.println("Erro ao buscar animal");
             e.printStackTrace();
