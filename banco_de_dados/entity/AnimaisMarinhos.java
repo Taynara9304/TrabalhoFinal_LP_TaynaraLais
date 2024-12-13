@@ -1,6 +1,16 @@
 package banco_de_dados.entity;
 
 public class AnimaisMarinhos implements Comparable<AnimaisMarinhos> {
+    @Override
+    public String toString() {
+        return "Espécie: " + nomeEspecie + 
+               ", Idade: " + idade + 
+               ", Patas: " + qtdPatas + 
+               ", Peso: " + peso + 
+               "kg, Profundidade Max: " + profundidadeMax + 
+               "m, Velocidade Max: " + velocidadeMax + " km/h";
+    }
+
     private String nomeEspecie = null;
     private int idade = 0;
     private int qtdPatas = 0;

@@ -30,7 +30,7 @@ public class AnimaisMarinhosDao {
 
             stmt.executeUpdate();
             System.out.println("Animal inserido com sucesso");
-            JOptionPane.showMessageDialog(null, "Sucesso ao inserir animal!", "Mensagem", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null, "Sucesso ao inserir animal!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
             System.out.println("Erro ao inserir animal");
             e.printStackTrace();

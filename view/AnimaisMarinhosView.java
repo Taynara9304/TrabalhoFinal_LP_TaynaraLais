@@ -67,9 +67,29 @@ public class AnimaisMarinhosView {
     }
 
     public static void imprimirListaAnimal(List<AnimaisMarinhos> listaAnimais) {
+
         for (AnimaisMarinhos animaisMarinhos : listaAnimais) {
-            imprimirAnimalMarinho(animaisMarinhos);
-        }
+                imprimirAnimalMarinho(animaisMarinhos);
+             }
+
+
+
+        // if (listaAnimais.isEmpty()) {
+        //     mostrarMensagem("Nenhum animal marinho cadastrado.");
+        //     return;
+        // }
+    
+        // StringBuilder sb = new StringBuilder("Lista de Animais Marinhos:\n");
+        // for (AnimaisMarinhos animal : listaAnimais) {
+        //     sb.append(animal.toString()).append("\n");
+        // }
+    
+        // mostrarMensagem(sb.toString());
+        
+    }
+
+    public static void mostrarMensagem(String mensagem) {
+        JOptionPane.showMessageDialog(null, mensagem);
     }
 
     public static String lerNomeAnimal() {
@@ -171,3 +191,4 @@ public class AnimaisMarinhosView {
 
     }
 }
+
