@@ -69,6 +69,10 @@ public class AnimaisMarinhosView{
     }
 
     public void ordenarAnimalPorNome(){
+        AnimaisMarinhosDao animalDao = new AnimaisMarinhosDao();
+        List<AnimaisMarinhos> listaAnimais = animalDao.listarTodos();
+        listaAnimais.sort((a1, a2) -> a1.getNomeEspecie().compareToIgnoreCase(a2.getNomeEspecie()));
+        imprimirListaAnimal(listaAnimais);
 
     }
 
@@ -139,6 +143,9 @@ public class AnimaisMarinhosView{
     }
 
     public void ContarQtdAnimalMarinho(){
+        AnimaisMarinhosDao animalDao = new AnimaisMarinhosDao();
+        int qtdAnimal = animalDao.contarAnimais();
+        JOptionPane.showMessageDialog(null, "Quantidade de animais marinhos: " + qtdAnimal, "Contar animais", JOptionPane.INFORMATION_MESSAGE);
         
     }
 

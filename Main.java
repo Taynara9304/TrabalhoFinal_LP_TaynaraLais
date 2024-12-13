@@ -14,7 +14,7 @@ public class Main {
         animaisView.imprimirAnimalMarinho(animal);*/
 
         animaisView.imprimirMenu();
-        animal = animaisDao.buscarAnimal("Cavalo");
+        animal = animaisDao.buscarAnimalPorNome("Cavalo");
         animaisView.imprimirAnimalMarinho(animal);
     }
 }

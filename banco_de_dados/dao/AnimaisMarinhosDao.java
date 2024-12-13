@@ -223,7 +223,7 @@ public class AnimaisMarinhosDao {
         }
     }
 
-    public void contarAvioes() {
+    public void contarAnimais() {
         String sql = "SELECT count(*) FROM animal";
 
         try (Connection connection = new Conexao().conectar()) {
