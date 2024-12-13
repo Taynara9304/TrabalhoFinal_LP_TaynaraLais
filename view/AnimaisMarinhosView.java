@@ -20,7 +20,7 @@ public class AnimaisMarinhosView{
 
     }
 
-    public void lerAnimaisMarinhos(AnimaisMarinhos animal) {
+    public static void lerAnimaisMarinhos(AnimaisMarinhos animal) {
         String nome = JOptionPane.showInputDialog(null, "Nome da espécie:", "Inserir dados", JOptionPane.QUESTION_MESSAGE);
         animal.setNomeEspecie(nome);
 
@@ -40,7 +40,7 @@ public class AnimaisMarinhosView{
         animal.setVelocidadeMax(velocidadeMax);
     }
 
-    public void imprimirAnimalMarinho(AnimaisMarinhos animal){
+    public static void imprimirAnimalMarinho(AnimaisMarinhos animal){
         JOptionPane.showMessageDialog(null, 
         "Nome do animal: " + animal.getNomeEspecie()
          + "\nIdade: " + animal.getIdade() + " anos"
@@ -51,31 +51,33 @@ public class AnimaisMarinhosView{
           "Janela inicial", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public void imprimirListaAnimal(ArrayList<AnimaisMarinhos> listaAnimais){
+    public static void imprimirListaAnimal(ArrayList<AnimaisMarinhos> listaAnimais){
         for (AnimaisMarinhos animaisMarinhos : listaAnimais) {
             imprimirAnimalMarinho(animaisMarinhos);
         }
     }
 
-    public void buscarAnimalPorNome(String nome){
+    public static void buscarAnimalPorNome(String nome){
         AnimaisMarinhosDao animal = new AnimaisMarinhosDao();
         animal.buscarAnimal(nome);
     }
 
-    public void removerAnimalMarinho(){
+    public static void removerAnimalMarinho(){
 
-    }
-
-    public void ordenarAnimalPorNome(){
-
-    }
-
-    public void editarAnimalMarinho(){
 
 
     }
 
-    public void ContarQtdAnimalMarinho(){
+    public static void ordenarAnimalPorNome(){
+        
+    }
+
+    public static void editarAnimalMarinho(){
+
+
+    }
+
+    public static void ContarQtdAnimalMarinho(){
         
     }
 

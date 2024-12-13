@@ -1,8 +1,8 @@
 all: build run
 
 cadastro:
-	@git config --global user.email "taynaradasilva2001@gmail.com"
-	@git config --global user.name "Taynara"
+	@git config --global user.email "20233007175@estudantes.ifpr.edu.br"
+	@git config --global user.name "LaisMayer"
 
 build:
 	@javac -d bin Main.java
