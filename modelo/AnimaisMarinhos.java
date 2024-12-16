@@ -101,5 +101,11 @@ public class AnimaisMarinhos implements Comparable<AnimaisMarinhos> {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "\nAnimaisMarinhos\nnomeEspecie: " + nomeEspecie + "\nidade: " + idade + "\nqtdPatas: " + qtdPatas + "\npeso: "
+                + peso + "\nprofundidadeMax: " + profundidadeMax + "\nvelocidadeMax: " + velocidadeMax + "\n";
+    }
+
     
 }

@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public class Conexao {
     public Connection conectar() {
         String url = "jdbc:mysql://localhost:3306/sistema_lp_animaisMarinhos";
-        String usuario = "root";
-        String senha = "24lM28@#";
+        String usuario = "aluno";
+        String senha = "aluno";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
