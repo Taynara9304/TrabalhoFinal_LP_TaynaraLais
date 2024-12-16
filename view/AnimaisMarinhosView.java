@@ -68,12 +68,7 @@ public class AnimaisMarinhosView {
 
     public static void imprimirListaAnimal(List<AnimaisMarinhos> listaAnimais) {
 
-        // for (AnimaisMarinhos animaisMarinhos : listaAnimais) {
-        //         imprimirAnimalMarinho(animaisMarinhos);
-        //      }
-
-
-
+      
         if (listaAnimais.isEmpty()) {
             mostrarMensagem("Nenhum animal marinho cadastrado.");
             return;
